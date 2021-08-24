@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Калькулятор</string>
+    <string name="ac">AC</string>
+    <string name="delete">◄</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="x">*</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="sum">+</string>
+    <string name="_0">0</string>
+    <string name="point">.</string>
+    <string name="equal">=</string>
+    <string name="percent">%</string>
+    <string name="dive">/</string>
+    <string name="deduc">-</string>
+    <string name="settings">Настройки</string>
+    <string name="school_theme">Школьная тема</string>
+    <string name="space_theme">Тема Космос</string>
+    <string name="accept">Принять</string>
+</resources>

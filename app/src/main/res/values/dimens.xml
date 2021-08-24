@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="radiobutton_text">30sp</dimen>
+    <dimen name="button_text">25sp</dimen>
+    <dimen name="sett">10sp</dimen>
+    <dimen name="textSize">50sp</dimen>
+
+    <dimen name="margin_textView">20dp</dimen>
+    <dimen name="margin_bottom">50dp</dimen>
+    <dimen name="margin">5dp</dimen>
+    <dimen name="margin_top_bottom_end">15dp</dimen>
+
+    <dimen name="padding_text_view_school">17dp</dimen>
+    <dimen name="padding_text_view_space_top">25dp</dimen>
+    <dimen name="padding_text_view_space_end">50dp</dimen>
+    <dimen name="padding_text_view_space_start">27dp</dimen>
+
+    <dimen name="height">250dp</dimen>
+    <dimen name="size">0dp</dimen>
+</resources>
