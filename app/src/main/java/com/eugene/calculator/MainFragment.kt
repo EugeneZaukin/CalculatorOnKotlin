@@ -1,9 +1,8 @@
 package com.eugene.calculator
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.*
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.*
 import com.eugene.calculator.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
@@ -22,6 +21,21 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initCalculatorButtons()
     }
 
+    private fun initCalculatorButtons() {
+        with(binding) {
+            buttonZero.setOnClickListener {  }
+            button1.setOnClickListener {  }
+            button2.setOnClickListener {  }
+            button3.setOnClickListener {  }
+            button4.setOnClickListener {  }
+            button5.setOnClickListener {  }
+            button6.setOnClickListener {  }
+            button7.setOnClickListener {  }
+            button8.setOnClickListener {  }
+            button9.setOnClickListener {  }
+        }
+    }
 }
