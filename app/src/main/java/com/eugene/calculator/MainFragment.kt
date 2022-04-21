@@ -39,16 +39,17 @@ class MainFragment : Fragment() {
 
     private fun initCalculatorButtons() {
         with(binding) {
-            buttonZero.setOnClickListener { viewModel.addButtonClick(buttonZero.text.toString()) }
-            button1.setOnClickListener { viewModel.addButtonClick(button1.text.toString()) }
-            button2.setOnClickListener { viewModel.addButtonClick(button2.text.toString()) }
-            button3.setOnClickListener { viewModel.addButtonClick(button3.text.toString()) }
-            button4.setOnClickListener { viewModel.addButtonClick(button4.text.toString()) }
-            button5.setOnClickListener { viewModel.addButtonClick(button5.text.toString()) }
-            button6.setOnClickListener { viewModel.addButtonClick(button6.text.toString()) }
-            button7.setOnClickListener { viewModel.addButtonClick(button7.text.toString()) }
-            button8.setOnClickListener { viewModel.addButtonClick(button8.text.toString()) }
-            button9.setOnClickListener { viewModel.addButtonClick(button9.text.toString()) }
+            buttonZero.setOnClickListener { viewModel.addButtonNumber(buttonZero.text.toString()) }
+            button1.setOnClickListener { viewModel.addButtonNumber(button1.text.toString()) }
+            button2.setOnClickListener { viewModel.addButtonNumber(button2.text.toString()) }
+            button3.setOnClickListener { viewModel.addButtonNumber(button3.text.toString()) }
+            button4.setOnClickListener { viewModel.addButtonNumber(button4.text.toString()) }
+            button5.setOnClickListener { viewModel.addButtonNumber(button5.text.toString()) }
+            button6.setOnClickListener { viewModel.addButtonNumber(button6.text.toString()) }
+            button7.setOnClickListener { viewModel.addButtonNumber(button7.text.toString()) }
+            button8.setOnClickListener { viewModel.addButtonNumber(button8.text.toString()) }
+            button9.setOnClickListener { viewModel.addButtonNumber(button9.text.toString()) }
+            buttonPoint.setOnClickListener { viewModel.addButtonPoint(buttonPoint.text.toString()) }
         }
     }
 }
