@@ -23,5 +23,14 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    fun clearAll() {
+        _result.tryEmit(stringBuilder.clear())
+    }
+
+    fun deleteChar() {
+        if (stringBuilder.isEmpty()) return
+        _result.tryEmit(stringBuilder.deleteAt(stringBuilder.length-1))
+    }
+
 
 }

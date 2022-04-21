@@ -50,6 +50,8 @@ class MainFragment : Fragment() {
             button8.setOnClickListener { viewModel.addButtonNumber(button8.text.toString()) }
             button9.setOnClickListener { viewModel.addButtonNumber(button9.text.toString()) }
             buttonPoint.setOnClickListener { viewModel.addButtonPoint(buttonPoint.text.toString()) }
+            buttonAc.setOnClickListener { viewModel.clearAll() }
+            buttonDelete.setOnClickListener { viewModel.deleteChar() }
         }
     }
 }
