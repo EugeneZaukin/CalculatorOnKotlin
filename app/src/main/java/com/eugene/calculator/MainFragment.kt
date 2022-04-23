@@ -52,6 +52,10 @@ class MainFragment : Fragment() {
             buttonPoint.setOnClickListener { viewModel.addButtonPoint(buttonPoint.text.toString()) }
             buttonAc.setOnClickListener { viewModel.clearAll() }
             buttonDelete.setOnClickListener { viewModel.deleteChar() }
+            buttonDiv.setOnClickListener { viewModel.addButtonSign(buttonDiv.text) }
+            buttonMultiplic.setOnClickListener { viewModel.addButtonSign(buttonMultiplic.text) }
+            buttonDeduction.setOnClickListener { viewModel.addButtonSign(buttonDeduction.text) }
+            buttonSum.setOnClickListener { viewModel.addButtonSign(buttonSum.text) }
         }
     }
 }
