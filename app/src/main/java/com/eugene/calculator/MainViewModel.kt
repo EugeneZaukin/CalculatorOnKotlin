@@ -37,7 +37,7 @@ class MainViewModel : ViewModel() {
         if (stringBuilder.isEmpty()) return
         this.sign = sign
 
-        if (stringBuilder.last() == '.') {
+        if (stringBuilder.endsWith('.')) {
             _result.tryEmit(stringBuilder.append("0$sign"))
             return
         }
@@ -49,7 +49,7 @@ class MainViewModel : ViewModel() {
             return
         }
 
-        if (stringBuilder.last() != sign.first()) {
+        if (stringBuilder.endsWith(sign)) {
             this.sign = sign
             _result.tryEmit(
                 stringBuilder.replace(
@@ -64,7 +64,7 @@ class MainViewModel : ViewModel() {
 
     //region CalculateResult
     fun buttonEquals() {
-        if (!::sign.isInitialized || stringBuilder.last() == sign.first()) return
+        if (!::sign.isInitialized || stringBuilder.endsWith(sign)) return
 
         val firstNum = stringBuilder.substring(0, stringBuilder.indexOf(sign))
         val secondNum = stringBuilder.substring(stringBuilder.indexOf(sign)+1)
