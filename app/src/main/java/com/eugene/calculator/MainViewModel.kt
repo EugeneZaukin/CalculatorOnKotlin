@@ -61,9 +61,30 @@ class MainViewModel : ViewModel() {
         buttonEquals()
     }
 
+    //region CalculateResult
     fun buttonEquals() {
+        val sign = Regex("[/*+\\-]")
+        val numbers = sign.split(stringBuilder)
 
+        val firstNum = numbers.first().toDouble()
+        val secondNum = numbers.last().toDouble()
+        calculateResult(firstNum, secondNum)
     }
 
+    private fun calculateResult(firstNum: Double, secondNum: Double) {
+        when {
+            stringBuilder.contains('/') -> { checkBacklog(firstNum / secondNum) }
+            stringBuilder.contains('*') -> { checkBacklog(firstNum * secondNum) }
+            stringBuilder.contains('-') -> { checkBacklog(firstNum - secondNum) }
+            stringBuilder.contains('+') -> { checkBacklog(firstNum + secondNum) }
+        }
+    }
 
+    private fun checkBacklog(result: Double) {
+        stringBuilder.clear()
+        if (result % 2 == 0.0) _result.tryEmit(stringBuilder.append(result.toInt()))
+        else _result.tryEmit(stringBuilder.append(result))
+    }
+
+    //endregion
 }

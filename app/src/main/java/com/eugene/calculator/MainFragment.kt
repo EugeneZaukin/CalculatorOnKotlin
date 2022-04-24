@@ -56,6 +56,7 @@ class MainFragment : Fragment() {
             buttonMultiplic.setOnClickListener { viewModel.addButtonSign(buttonMultiplic.text) }
             buttonDeduction.setOnClickListener { viewModel.addButtonSign(buttonDeduction.text) }
             buttonSum.setOnClickListener { viewModel.addButtonSign(buttonSum.text) }
+            buttonEqual.setOnClickListener { viewModel.buttonEquals() }
         }
     }
 }
