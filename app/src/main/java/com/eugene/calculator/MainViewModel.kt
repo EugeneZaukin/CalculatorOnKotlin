@@ -32,7 +32,7 @@ class MainViewModel : ViewModel() {
         _result.tryEmit(stringBuilder.deleteAt(stringBuilder.length-1))
     }
 
-    fun addButtonSign(sign: CharSequence) {
+    fun addButtonSign(sign: String) {
         if (stringBuilder.isEmpty()) return
 
         if (stringBuilder.last() == '.') {
@@ -52,13 +52,11 @@ class MainViewModel : ViewModel() {
                 stringBuilder.replace(
                     lastCharIndex,
                     stringBuilder.length,
-                    sign.toString()
+                    sign
                 )
             )
             return
         }
-
-        buttonEquals()
     }
 
     //region CalculateResult

@@ -30,9 +30,7 @@ class MainFragment : Fragment() {
     private fun startObserve() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.result
-                .onEach {
-                    binding.textView2.text = it
-                }
+                .onEach { binding.textView2.text = it }
                 .collect()
         }
     }
@@ -52,10 +50,10 @@ class MainFragment : Fragment() {
             buttonPoint.setOnClickListener { viewModel.addButtonPoint(buttonPoint.text.toString()) }
             buttonAc.setOnClickListener { viewModel.clearAll() }
             buttonDelete.setOnClickListener { viewModel.deleteChar() }
-            buttonDiv.setOnClickListener { viewModel.addButtonSign(buttonDiv.text) }
-            buttonMultiplic.setOnClickListener { viewModel.addButtonSign(buttonMultiplic.text) }
-            buttonDeduction.setOnClickListener { viewModel.addButtonSign(buttonDeduction.text) }
-            buttonSum.setOnClickListener { viewModel.addButtonSign(buttonSum.text) }
+            buttonDiv.setOnClickListener { viewModel.addButtonSign(buttonDiv.text.toString()) }
+            buttonMultiplic.setOnClickListener { viewModel.addButtonSign(buttonMultiplic.text.toString()) }
+            buttonDeduction.setOnClickListener { viewModel.addButtonSign(buttonDeduction.text.toString()) }
+            buttonSum.setOnClickListener { viewModel.addButtonSign(buttonSum.text.toString()) }
             buttonEqual.setOnClickListener { viewModel.buttonEquals() }
         }
     }
