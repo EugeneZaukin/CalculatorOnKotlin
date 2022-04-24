@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.*
 
 class MainViewModel : ViewModel() {
     private val stringBuilder = StringBuilder()
-    private lateinit var sign: String
+    private var signIndex: Int = 0
 
     private var _result = MutableSharedFlow<StringBuilder>(1, 0, BufferOverflow.DROP_OLDEST)
     val result get() = _result.asSharedFlow()
@@ -35,22 +35,30 @@ class MainViewModel : ViewModel() {
 
     fun addButtonSign(sign: String) {
         if (stringBuilder.isEmpty()) return
-        this.sign = sign
 
         if (stringBuilder.endsWith('.')) {
             _result.tryEmit(stringBuilder.append("0$sign"))
+            signIndex = stringBuilder.lastIndex
             return
         }
 
         val onlyNumAndPoint = Regex("\\d")
         val lastCharIndex = stringBuilder.lastIndex
-        if (onlyNumAndPoint.find(stringBuilder, lastCharIndex) != null) {
+
+        if (signIndex != 0 && lastCharIndex != signIndex) {
+            buttonEquals()
             _result.tryEmit(stringBuilder.append(sign))
+            signIndex = stringBuilder.lastIndex
             return
         }
 
-        if (stringBuilder.endsWith(sign)) {
-            this.sign = sign
+        if (onlyNumAndPoint.find(stringBuilder, lastCharIndex) != null) {
+            _result.tryEmit(stringBuilder.append(sign))
+            signIndex = stringBuilder.lastIndex
+            return
+        }
+
+        if (!stringBuilder.endsWith(sign)) {
             _result.tryEmit(
                 stringBuilder.replace(
                     lastCharIndex,
@@ -64,19 +72,20 @@ class MainViewModel : ViewModel() {
 
     //region CalculateResult
     fun buttonEquals() {
-        if (!::sign.isInitialized || stringBuilder.endsWith(sign)) return
+        if (signIndex == 0 || stringBuilder.lastIndex == signIndex) return
 
-        val firstNum = stringBuilder.substring(0, stringBuilder.indexOf(sign))
-        val secondNum = stringBuilder.substring(stringBuilder.indexOf(sign)+1)
+        val firstNum = stringBuilder.substring(0, signIndex)
+        val secondNum = stringBuilder.substring(signIndex + 1)
+        signIndex = 0
         calculateResult(firstNum.toDouble(), secondNum.toDouble())
     }
 
     private fun calculateResult(firstNum: Double, secondNum: Double) {
-        when (sign) {
-            "/" -> checkBacklog(firstNum / secondNum)
-            "*" -> checkBacklog(firstNum * secondNum)
-            "-" -> checkBacklog(firstNum - secondNum)
-            "+" -> checkBacklog(firstNum + secondNum)
+        when {
+            stringBuilder.contains('/') -> checkBacklog(firstNum / secondNum)
+            stringBuilder.contains('*') -> checkBacklog(firstNum * secondNum)
+            stringBuilder.contains('-') -> checkBacklog(firstNum - secondNum)
+            stringBuilder.contains('+') -> checkBacklog(firstNum + secondNum)
         }
     }
 
