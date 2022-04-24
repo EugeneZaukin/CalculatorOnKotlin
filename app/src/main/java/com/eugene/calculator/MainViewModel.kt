@@ -30,6 +30,7 @@ class MainViewModel : ViewModel() {
 
     fun deleteChar() {
         if (stringBuilder.isEmpty()) return
+        if (signIndex == stringBuilder.lastIndex) signIndex = 0
         _result.tryEmit(stringBuilder.deleteAt(stringBuilder.length-1))
     }
 
