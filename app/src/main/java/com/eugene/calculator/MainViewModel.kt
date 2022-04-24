@@ -35,9 +35,17 @@ class MainViewModel : ViewModel() {
     fun addButtonSign(sign: CharSequence) {
         if (stringBuilder.isEmpty()) return
 
-        val onlyNumAndPoint = Regex("[\\d.]")
+        if (stringBuilder.last() == '.') {
+            _result.tryEmit(stringBuilder.append("0$sign"))
+            return
+        }
+
+        val onlyNumAndPoint = Regex("\\d")
         val lastCharIndex = stringBuilder.lastIndex
-        if (onlyNumAndPoint.find(stringBuilder, lastCharIndex) != null) _result.tryEmit(stringBuilder.append(sign))
+        if (onlyNumAndPoint.find(stringBuilder, lastCharIndex) != null) {
+            _result.tryEmit(stringBuilder.append(sign))
+            return
+        }
 
         if (stringBuilder.last() != sign.first()) {
             _result.tryEmit(
@@ -47,14 +55,14 @@ class MainViewModel : ViewModel() {
                     sign.toString()
                 )
             )
+            return
         }
 
-        when (stringBuilder.last()) {
-            '/' -> {}
-            '*' -> {}
-            '-' -> {}
-            '+' -> {}
-        }
+        buttonEquals()
+    }
+
+    fun buttonEquals() {
+
     }
 
 
