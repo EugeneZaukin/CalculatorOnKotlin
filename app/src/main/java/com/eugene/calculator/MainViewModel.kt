@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.*
 
 class MainViewModel : ViewModel() {
     private val stringBuilder = StringBuilder()
+    private lateinit var sign: String
 
     private var _result = MutableSharedFlow<StringBuilder>(1, 0, BufferOverflow.DROP_OLDEST)
     val result get() = _result.asSharedFlow()
@@ -34,6 +35,7 @@ class MainViewModel : ViewModel() {
 
     fun addButtonSign(sign: String) {
         if (stringBuilder.isEmpty()) return
+        this.sign = sign
 
         if (stringBuilder.last() == '.') {
             _result.tryEmit(stringBuilder.append("0$sign"))
@@ -48,6 +50,7 @@ class MainViewModel : ViewModel() {
         }
 
         if (stringBuilder.last() != sign.first()) {
+            this.sign = sign
             _result.tryEmit(
                 stringBuilder.replace(
                     lastCharIndex,
@@ -61,20 +64,19 @@ class MainViewModel : ViewModel() {
 
     //region CalculateResult
     fun buttonEquals() {
-        val sign = Regex("[/*+\\-]")
-        val numbers = sign.split(stringBuilder)
+        if (!::sign.isInitialized || stringBuilder.last() == sign.first()) return
 
-        val firstNum = numbers.first().toDouble()
-        val secondNum = numbers.last().toDouble()
-        calculateResult(firstNum, secondNum)
+        val firstNum = stringBuilder.substring(0, stringBuilder.indexOf(sign))
+        val secondNum = stringBuilder.substring(stringBuilder.indexOf(sign)+1)
+        calculateResult(firstNum.toDouble(), secondNum.toDouble())
     }
 
     private fun calculateResult(firstNum: Double, secondNum: Double) {
-        when {
-            stringBuilder.contains('/') -> { checkBacklog(firstNum / secondNum) }
-            stringBuilder.contains('*') -> { checkBacklog(firstNum * secondNum) }
-            stringBuilder.contains('-') -> { checkBacklog(firstNum - secondNum) }
-            stringBuilder.contains('+') -> { checkBacklog(firstNum + secondNum) }
+        when (sign) {
+            "/" -> checkBacklog(firstNum / secondNum)
+            "*" -> checkBacklog(firstNum * secondNum)
+            "-" -> checkBacklog(firstNum - secondNum)
+            "+" -> checkBacklog(firstNum + secondNum)
         }
     }
 
