@@ -55,6 +55,7 @@ class MainFragment : Fragment() {
             buttonDeduction.setOnClickListener { viewModel.addButtonSign(buttonDeduction.text.toString()) }
             buttonSum.setOnClickListener { viewModel.addButtonSign(buttonSum.text.toString()) }
             buttonEqual.setOnClickListener { viewModel.buttonEquals() }
+            buttonPercent.setOnClickListener { viewModel.buttonPercent() }
         }
     }
 }

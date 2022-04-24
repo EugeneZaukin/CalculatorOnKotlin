@@ -74,10 +74,10 @@ class MainViewModel : ViewModel() {
     fun buttonEquals() {
         if (signIndex == 0 || stringBuilder.lastIndex == signIndex) return
 
-        val firstNum = stringBuilder.substring(0, signIndex)
-        val secondNum = stringBuilder.substring(signIndex + 1)
+        val firstNum = stringBuilder.substring(0, signIndex).toDouble()
+        val secondNum = stringBuilder.substring(signIndex + 1).toDouble()
         signIndex = 0
-        calculateResult(firstNum.toDouble(), secondNum.toDouble())
+        calculateResult(firstNum, secondNum)
     }
 
     private fun calculateResult(firstNum: Double, secondNum: Double) {
@@ -96,4 +96,14 @@ class MainViewModel : ViewModel() {
     }
 
     //endregion
+
+    fun buttonPercent() {
+        if (signIndex == 0 || stringBuilder.lastIndex == signIndex) return
+
+        val firstNum = stringBuilder.substring(0, signIndex).toDouble()
+        val secondNum = stringBuilder.substring(signIndex + 1).toDouble()
+        val resultPercent = firstNum / 100 * secondNum
+        stringBuilder.replace(signIndex+1, stringBuilder.length, resultPercent.toString())
+        buttonEquals()
+    }
 }
