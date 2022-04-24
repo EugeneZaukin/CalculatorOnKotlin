@@ -82,7 +82,7 @@ class MainViewModel : ViewModel() {
 
     private fun checkBacklog(result: Double) {
         stringBuilder.clear()
-        if (result % 2 == 0.0) _result.tryEmit(stringBuilder.append(result.toInt()))
+        if (result % 1 == 0.0) _result.tryEmit(stringBuilder.append(result.toInt()))
         else _result.tryEmit(stringBuilder.append(result))
     }
 
