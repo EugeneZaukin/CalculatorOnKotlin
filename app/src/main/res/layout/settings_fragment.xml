@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00ffffff"
+        android:layout_margin="@dimen/margin"
+        app:layout_constraintBottom_toTopOf="@+id/button_ok"
+        app:layout_constraintEnd_toEndOf="@+id/button_ok"
+        app:layout_constraintStart_toStartOf="@+id/button_ok">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/school_style_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/school_theme"
+            android:textColor="@color/white"
+            android:textSize="@dimen/radiobutton_text" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/space_style_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/space_theme"
+            android:textColor="@color/white"
+            android:textSize="@dimen/radiobutton_text" />
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/accept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
