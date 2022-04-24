@@ -8,7 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class MainActivity extends ActivitySettings {
+public class MainActivityDeprec extends ActivitySettings {
 
     private final static String KEY = "KeyCalc";
 
