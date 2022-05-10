@@ -31,7 +31,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         startObserve()
         initCalculatorButtons()
-        initButtonSettings();
+        initButtonSettings()
     }
 
     private fun getTheme() {
