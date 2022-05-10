@@ -1,5 +1,6 @@
 package com.eugene.calculator
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.*
@@ -8,6 +9,10 @@ import com.eugene.calculator.databinding.MainFragmentBinding
 import kotlinx.coroutines.flow.*
 
 class MainFragment : Fragment() {
+    private val NAME_SHARED_PREFERENCE = "calculator_themes"
+    private val APP_THEME = "APP_THEME"
+    private val SCHOOL_THEME = 0
+
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -17,6 +22,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        getTheme()
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -25,6 +31,22 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         startObserve()
         initCalculatorButtons()
+        initButtonSettings();
+    }
+
+    private fun getTheme() {
+        val sharedPreferences =
+            activity?.getSharedPreferences(NAME_SHARED_PREFERENCE, Context.MODE_PRIVATE)
+
+        if (sharedPreferences != null) {
+            val int = sharedPreferences.getInt(APP_THEME, 0)
+
+            if (int == SCHOOL_THEME) {
+                activity?.setTheme(R.style.SchoolTheme)
+            } else {
+                activity?.setTheme(R.style.SpaceTheme)
+            }
+        }
     }
 
     private fun startObserve() {
@@ -56,6 +78,15 @@ class MainFragment : Fragment() {
             buttonSum.setOnClickListener { viewModel.addButtonSign(buttonSum.text.toString()) }
             buttonEqual.setOnClickListener { viewModel.buttonEquals() }
             buttonPercent.setOnClickListener { viewModel.buttonPercent() }
+        }
+    }
+
+    private fun initButtonSettings() {
+        binding.buttonSettings.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.content_fragment, SettingsFragment())
+                .addToBackStack("")
+                .commitAllowingStateLoss()
         }
     }
 }
